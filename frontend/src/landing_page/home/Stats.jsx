@@ -2,8 +2,8 @@ import React from "react";
 
 function Stats() {
   return (
-    <div className="container ">
-      <div className="row p-5">
+    <div className="container mb-5">
+      <div className="row p-5 pb-0">
         <div className="col-6 p-5 ">
           <h3 className="mb-5">Trust with confidence</h3>
           <h4>Customer-first always</h4>
@@ -46,8 +46,15 @@ function Stats() {
             <a href="" style={{textDecoration: "none"}}>
               Try Kite demo <i class="fa-solid fa-arrow-right"></i>
             </a>
+            
           </div>
         </div>
+      </div>
+      <div style={{height:"10px"}}></div>
+      <div className="row mt-0">
+        <div className="col-2"></div>
+        <div className="col-8"><img src="/media/pressLogos.png" style={{width:"90%"}} alt="" /></div>
+        <div className="col-2"></div>
       </div>
     </div>
   );
