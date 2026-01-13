@@ -19,10 +19,10 @@ root.render(
     <Routes>
       <Route path="/" element={<HomePage></HomePage>}></Route>
       <Route path="/signup" element={<Signup/>}></Route>
-      <Route path="/about" element={<Signup/>}></Route>
-      <Route path="/product" element={<Signup/>}></Route>
-      <Route path="/pricing" element={<HomePage></HomePage>}></Route>
-      <Route path="/support" element={<HomePage></HomePage>}></Route>
+      <Route path="/about" element={<About/>}></Route>
+      <Route path="/product" element={<Product/>}></Route>
+      <Route path="/pricing" element={<Pricing></Pricing>}></Route>
+      <Route path="/support" element={<Support></Support>}></Route>
       <Route path='*' element={<Notfound></Notfound>}></Route>
     </Routes>
   </BrowserRouter>
