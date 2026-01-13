@@ -8,7 +8,7 @@ import About from './landing_page/about/AboutPage'
 import Product from './landing_page/products/Universe'
 import Pricing from './landing_page/home/Pricing';
 import Support from './landing_page/support/SupportPage'
-
+import Notfound from './landing_page/Notfound';
 import HomePage from './landing_page/home/HomePage';
 
 
@@ -23,6 +23,7 @@ root.render(
       <Route path="/product" element={<Signup/>}></Route>
       <Route path="/pricing" element={<HomePage></HomePage>}></Route>
       <Route path="/support" element={<HomePage></HomePage>}></Route>
+      <Route path='*' element={<Notfound></Notfound>}></Route>
     </Routes>
   </BrowserRouter>
 );
