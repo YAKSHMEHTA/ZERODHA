@@ -10,7 +10,7 @@ const Menu = () => {
     setSelectedMenu(index)
   }
   function HandleProfileOpen (index){
-    setSelectedMenu(!profileOpen)
+    setProfileOpen(!profileOpen)
   }
 
   const menuClass = "menu"
@@ -53,7 +53,7 @@ const Menu = () => {
           </Link>
         </ul>
         <hr />
-        <div className="profile" >
+        <div className="profile" onClick={HandleProfileOpen} >
           <div className="avatar">ZU</div>
           <p className="username">USERID</p>
         </div>
