@@ -90,7 +90,6 @@ const WatchListAction = ({uid}) =>{
         </Tooltip>
       </span>
     </span>
-    
   );
 
 }
