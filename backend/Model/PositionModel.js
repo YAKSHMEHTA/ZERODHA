@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 const {PositionSchema} = require('../Schema/PositionSchema')
 
-const PositionModel = new model("position",PositionSchema)
+const PositionModel =  model("position",PositionSchema)
 
 model.export = {PositionModel}
