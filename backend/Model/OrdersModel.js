@@ -3,4 +3,4 @@ const { OrdersSchema } = require("../Schema/OrdersSchema")
 
 const OrdersModel =  model("holding",OrdersSchema)
 
-model.exports={OrdersModel}
+module.exports={OrdersModel}
