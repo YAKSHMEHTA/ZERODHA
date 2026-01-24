@@ -3,8 +3,9 @@ import axios  from "axios";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
-
+  console.log("app")
   useEffect(() => {
+    console.log("req se")
     axios.get("http://localhost:3002/allHoldings").then((res) => {
       console.log("data coming");
       setAllHoldings(res.data);
@@ -17,6 +18,7 @@ const Holdings = () => {
 
       <div className="order-table">
         <table>
+        <tbody>
           <tr>
             <th>Instrument</th>
             <th>Qty.</th>
@@ -27,6 +29,7 @@ const Holdings = () => {
             <th>Net chg.</th>
             <th>Day chg.</th>
           </tr>
+          </tbody>
           {allHoldings.map((stock, index) => {
             const currValue = stock.price * stock.qty;
             const isProfit = currValue - stock.avg * stock.qty >= 0;

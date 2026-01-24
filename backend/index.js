@@ -6,9 +6,16 @@ const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 const { PositionsModel } = require("./Model/PositionsModel");
 const { HoldingModel } = require("./Model/HoldingModel");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
 
 const app = express();
 app.use(express.json());
+app.use(cors())
+app.use(bodyParser.json())
+
+
 
 app.get("/addHoldings", async (req, res) => {
   let tempHolding = [
@@ -183,9 +190,10 @@ app.get("/allHoldings", async (req, res) => {
 });
 
 app.get("/allPositions", async (req, res) => {
-  let allPositions = await PositionsModel.find({})
-  res.json(allPositions)
+  let allPositions = await PositionsModel.find({});
+  res.json(allPositions);
 });
+
 
 app.listen(PORT, () => {
   console.log("app started");
