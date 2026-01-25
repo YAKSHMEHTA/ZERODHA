@@ -1,7 +1,10 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCookies } from "react-cookie";
 
 function Navbar() {
+   
+
   return (
       <nav className="navbar  navbar-expand-lg border-bottom" style={{backgroundColor:"#fff"}}>
         <div className="container p-2">
@@ -45,6 +48,7 @@ function Navbar() {
                 <Link className="nav-link" to="support">
                   Support
                 </Link>
+                
               </li>
             </ul>
           </div>
