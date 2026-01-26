@@ -1,16 +1,47 @@
 import React, { useState, useEffect } from "react";
-import axios  from "axios";
+import axios from "axios";
+import { Vgraph } from "./Vgraph";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
-  console.log("app")
+  console.log("app");
   useEffect(() => {
-    console.log("req se")
+    console.log("req se");
     axios.get("http://localhost:3002/allHoldings").then((res) => {
       console.log("data coming");
       setAllHoldings(res.data);
     });
   }, []);
+
+  const labels = allHoldings.map((subArray) => ( subArray["name"] ))
+
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Stock Nmae",
+        data: allHoldings.map((stock) =>stock.price),
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ]
+  }
+
+  // const data = {
+  //   labels,
+  //   datasets: [ 
+  //     {
+  //       label: "Dataset 1",
+  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       backgroundColor: "rgba(255, 99, 132, 0.5)",
+  //     },
+  //     {
+  //       label: "Dataset 2",
+  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       backgroundColor: "rgba(53, 162, 235, 0.5)",
+  //     },
+  //   ],
+  // };
+
 
   return (
     <>
@@ -18,17 +49,17 @@ const Holdings = () => {
 
       <div className="order-table">
         <table>
-        <tbody>
-          <tr>
-            <th>Instrument</th>
-            <th>Qty.</th>
-            <th>Avg. cost</th>
-            <th>LTP</th>
-            <th>Cur. val</th>
-            <th>P&L</th>
-            <th>Net chg.</th>
-            <th>Day chg.</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Instrument</th>
+              <th>Qty.</th>
+              <th>Avg. cost</th>
+              <th>LTP</th>
+              <th>Cur. val</th>
+              <th>P&L</th>
+              <th>Net chg.</th>
+              <th>Day chg.</th>
+            </tr>
           </tbody>
           {allHoldings.map((stock, index) => {
             const currValue = stock.price * stock.qty;
@@ -72,6 +103,7 @@ const Holdings = () => {
           <p>P&L</p>
         </div>
       </div>
+      <Vgraph data={data}></Vgraph>
     </>
   );
 };
