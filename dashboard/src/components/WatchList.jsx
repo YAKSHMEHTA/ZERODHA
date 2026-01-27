@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { watchlist } from "../data/Data";
 import "../index.css";
+import GeneralContext from "./GeneralContext";
+import axios from "axios";
 import {KeyboardArrowDown,KeyboardArrowUp, Spa} from '@mui/icons-material'
 import { Tooltip, Grow } from "@mui/material";
 
+
+
 const WatchList = () => {
+
+
+
   return (
     <div className="watchlist-container">
       <div className="search-container">
@@ -53,6 +60,10 @@ const WatchListItem = ({ stock, index }) => {
 };
 
 const WatchListAction = ({uid}) =>{
+  const generalContext = useContext(GeneralContext);
+  const handelClick = ()=>{
+    generalContext.openBuyWindow(uid)
+  }
 
   return (
     <span className="actions">
@@ -62,7 +73,7 @@ const WatchListAction = ({uid}) =>{
           placement="top"
           arrow
           TransitionComponent={Grow}
-          
+          onClick={handelClick}
         >
           <button className="buy">Buy</button>
         </Tooltip>

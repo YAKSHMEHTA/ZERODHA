@@ -50,3 +50,12 @@ module.exports.Login = async (req, res, next) => {
     console.error(error);
   }
 }
+
+module.exports.NewOrder = async(req,res) =>{
+  try{
+      console.log("hi")
+      res.send("hu")
+  }catch(err){
+    console.log(err)
+  }
+}

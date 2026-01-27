@@ -164,6 +164,11 @@ app.get("/addHoldings", async (req, res) => {
   res.send("done");
 });
 
+app.get("/neworder",async(req,res)=>{
+  console.log('hii');
+  res.json({hi:"hi"})
+})
+
 app.get("/addPositions", async (req, res) => {
   let tempPosition = [
     {
