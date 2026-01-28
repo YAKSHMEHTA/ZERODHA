@@ -219,3 +219,16 @@
     color: #fff;
   }
   
+.profile-pop-up {
+  position: fixed;      
+  top: 70px;            
+  right: 20px;
+  z-index: 9999;       
+}
+
+.profile-popup-card {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
