@@ -13,29 +13,31 @@ const authRoute = require("./Routes/AuthRoute");
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000"],
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-}))
-app.use(bodyParser.json())
+  }),
+);
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/", authRoute);
+app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   console.log(req.method, req.url);
   next();
 });
 
-
-mongoose.connect(uri)
+mongoose
+  .connect(uri)
   .then(() => {
     console.log("DB connected");
     app.listen(PORT, () => {
       console.log("Server running on port", PORT);
     });
   })
-  .catch(err => console.error(err));
-
+  .catch((err) => console.error(err));
 
 app.get("/addHoldings", async (req, res) => {
   let tempHolding = [
@@ -164,10 +166,76 @@ app.get("/addHoldings", async (req, res) => {
   res.send("done");
 });
 
-app.get("/neworder",async(req,res)=>{
-  console.log('hii');
-  res.json({hi:"hi"})
+app.post("/newOrder", async (req, res) => {
+  try {
+    const { name, qty, price } = req.body;
+
+    let holding = await HoldingModel.findOne({ name });
+
+    // 🆕 New holding
+    if (!holding) {
+      holding = new HoldingModel({
+        name,
+        qty,
+        avg: price,
+        price,
+        net: "0%",
+        day: "0%",
+      });
+    } 
+    // ➕ Existing holding
+    else {
+      const qtyNum = Number(qty);
+      const priceNum = Number(price);
+      const totalQty = holding.qty + qtyNum;
+
+      const newAvg =
+        (holding.avg * holding.qty + priceNum * qtyNum) / totalQty;
+
+      holding.qty = totalQty;
+      holding.avg = newAvg;
+      holding.price = priceNum;
+    }
+
+    await holding.save();
+
+    res.json({
+      success: true,
+      holding,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Order failed" });
+  }
+});
+
+app.post("/sellOrder",async(req,res)=>{
+  try{
+    const{name,qty,price} = req.body
+    let holding = await HoldingModel.findOne({name})
+
+    if(!holding){
+      return res.status(404).json({ error: "No holding found" });
+    }
+    if (qty > holding.qty) {
+      return res.status(400).json({ error: "Not enough quantity to sell" });
+    }
+    const remainingQty = holding.qty - qty;
+    if(remainingQty === 0){
+      if(qty>holding.qty) return
+      await HoldingModel.deleteOne({ name });
+      return res.json({ success: true, message: "Holding sold completely" });
+    }
+    holding.qty = remainingQty;
+    holding.price = price;
+    await holding.save()
+  }catch(err){
+    console.log(err);
+  }
+  res.json({okay:"sent"})
 })
+
 
 app.get("/addPositions", async (req, res) => {
   let tempPosition = [
@@ -209,6 +277,8 @@ app.get("/addPositions", async (req, res) => {
   res.send("position Saved");
 });
 
+
+
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingModel.find({});
   res.json(allHoldings);
@@ -218,5 +288,3 @@ app.get("/allPositions", async (req, res) => {
   let allPositions = await PositionsModel.find({});
   res.json(allPositions);
 });
-
-

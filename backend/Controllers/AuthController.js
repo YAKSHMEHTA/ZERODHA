@@ -51,11 +51,3 @@ module.exports.Login = async (req, res, next) => {
   }
 }
 
-module.exports.NewOrder = async(req,res) =>{
-  try{
-      console.log("hi")
-      res.send("hu")
-  }catch(err){
-    console.log(err)
-  }
-}

@@ -3,7 +3,7 @@ import { watchlist } from "../data/Data";
 import "../index.css";
 import GeneralContext from "./GeneralContext";
 import axios from "axios";
-import {KeyboardArrowDown,KeyboardArrowUp, Spa} from '@mui/icons-material'
+import {KeyboardArrowDown,KeyboardArrowUp} from '@mui/icons-material'
 import { Tooltip, Grow } from "@mui/material";
 
 
@@ -82,6 +82,7 @@ const WatchListAction = ({uid}) =>{
           placement="top"
           arrow
           TransitionComponent={Grow}
+          onClick={handelClick}
         >
           <button className="sell">Sell</button>
         </Tooltip>

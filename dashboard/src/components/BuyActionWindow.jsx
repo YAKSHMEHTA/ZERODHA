@@ -17,6 +17,15 @@ const BuyActionWindow = ({ uid }) => {
     });
     GeneralContext.closeBuyWindow();
   };
+  const handelSellClick= ()=>{
+    axios.post("http://localhost:3002/sellOrder",{
+      name: uid,
+      qty: stockQuantity,
+      price: stockPrice,
+      mode: "SELL",
+    })
+    GeneralContext.closeBuyWindow();
+  }
   const handleCancelClick = () => {
     GeneralContext.closeBuyWindow();
   }
@@ -31,7 +40,7 @@ const BuyActionWindow = ({ uid }) => {
               type="number"
               name="qty"
               id="qty"
-              onChange={(e) => setStockQuantity(e.target.value)}
+              onChange={(e) => setStockQuantity(Number(e.target.value))}
               value={stockQuantity}
             />
           </fieldset>
@@ -42,7 +51,7 @@ const BuyActionWindow = ({ uid }) => {
               name="price"
               id="price"
               step="0.05"
-              onChange={(e) => setStockPrice(e.target.value)}
+              onChange={(e) => setStockPrice(Number(e.target.value))}
               value={stockPrice}
             />
           </fieldset>
@@ -54,6 +63,9 @@ const BuyActionWindow = ({ uid }) => {
         <div>
           <Link className="btn btn-blue" onClick={handleBuyClick}>
             Buy
+          </Link>
+          <Link className="btn btn-red" onClick={handelSellClick}>
+            Sell
           </Link>
           <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
