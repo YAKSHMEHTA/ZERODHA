@@ -10,6 +10,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 const app = express();
 app.use(express.json());
@@ -29,8 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose
-  .connect(uri)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("DB connected");
     app.listen(PORT, () => {
