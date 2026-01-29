@@ -19,7 +19,7 @@ export const GeneralContextProvider = (props)=> {
 
   const handelClose = ()=>{
     setSelectedStockUid("")
-    setIsBuyWindowOpen(true)
+    setIsBuyWindowOpen(false)  // Changed from true to false
   }
 
   return (

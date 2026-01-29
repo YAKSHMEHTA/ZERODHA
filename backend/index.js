@@ -1,4 +1,4 @@
-
+console.log('Running');
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -174,7 +174,7 @@ app.post("/newOrder", async (req, res) => {
 
     let holding = await HoldingModel.findOne({ name });
 
-    // 🆕 New holding
+    
     if (!holding) {
       holding = new HoldingModel({
         name,
@@ -185,7 +185,7 @@ app.post("/newOrder", async (req, res) => {
         day: "0%",
       });
     } 
-    // ➕ Existing holding
+    
     else {
       const qtyNum = Number(qty);
       const priceNum = Number(price);
