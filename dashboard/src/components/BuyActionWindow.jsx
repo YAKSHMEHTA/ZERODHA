@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
-import { useLocation } from "react-router-dom";
 
 
 

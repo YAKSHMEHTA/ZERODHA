@@ -2,7 +2,6 @@ import React, { useState,useContext } from "react";
 import { watchlist } from "../data/Data";
 import "../index.css";
 import GeneralContext from "./GeneralContext";
-import axios from "axios";
 import {KeyboardArrowDown,KeyboardArrowUp} from '@mui/icons-material'
 import { Tooltip, Grow } from "@mui/material";
 

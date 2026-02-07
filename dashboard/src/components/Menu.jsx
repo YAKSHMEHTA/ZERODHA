@@ -17,7 +17,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <img src="logo.png" alt="yaksh" style={{ width: "50px" }} />
       <div className="menus">
         <ul>
           <Link to="/" style={{ textDecoration: "none" }}>
@@ -71,7 +71,10 @@ const Menu = () => {
       </div>
       <div className="profile-pop-up">{profileOpen && 
         <div className="">
-          <div className=""><a href=""></a></div>
+          <div className="Profile" >
+            <Link className="btn btn-grey">Profile</Link>
+            
+          </div>
         </div>}
       </div>
     </div>
