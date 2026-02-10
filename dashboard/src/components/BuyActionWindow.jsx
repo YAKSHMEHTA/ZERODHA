@@ -14,7 +14,7 @@ const BuyActionWindow = ({ uid }) => {
   const { closeBuyWindow } = useContext(GeneralContext);
 
   const handleBuyClick = async() => {
-    await axios.post("https://zerodha-3-rhrz.onrender.com/newOrder", {
+    await axios.post("https://zerodha-6-j4fb.onrender.com/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
@@ -24,7 +24,7 @@ const BuyActionWindow = ({ uid }) => {
   };
   
   const handelSellClick = async() => {
-    await axios.post("https://zerodha-3-rhrz.onrender.com/sellOrder", {
+    await axios.post("https://zerodha-6-j4fb.onrender.com/sellOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockPrice,
