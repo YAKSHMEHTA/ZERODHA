@@ -19,12 +19,12 @@ app.use(express.json());
 app.use(
   cors({                                                              
     origin: ["http://localhost:3001","https://zerodha-zkum-pv2p938cg-yakshvardhansinghmehta-2728s-projects.vercel.app","https://zerodha-zkum.vercel.app","http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE","OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
 );
 
-app.options("/*", cors());
+
 
 
 app.use(bodyParser.json());
