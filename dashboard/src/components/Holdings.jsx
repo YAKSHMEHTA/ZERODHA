@@ -7,7 +7,7 @@ const Holdings = () => {
   console.log("app");
   useEffect(() => {
     console.log("req se");
-    axios.get("https://zerodha-3-rhrz.onrender.com/allHoldings").then((res) => {
+    axios.get("https://zerodha-3-rhrz.onrender.com/allHoldings",{ withCredentials: true}).then((res) => {
       console.log("data coming");
       setAllHoldings(res.data);
     });

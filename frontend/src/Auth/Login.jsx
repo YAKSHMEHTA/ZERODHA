@@ -31,7 +31,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/login",
+        "https://zerodha-3-rhrz.onrender.com/login",
         {
           ...inputValue,
         },
@@ -42,9 +42,10 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          navigate("http://localhost:3001/");
         }, 1000);
       } else {
+        console.log("failed")
         handleError(message);
       }
     } catch (error) {
@@ -81,9 +82,9 @@ const Login = () => {
             onChange={handleOnChange}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button className="bg-green-500" onClick={handleSubmit} type="submit">Submit</button>
         <span>
-          Already have an account? <Link to={"/signup"}>Signup</Link>
+          Dont have have an account? <Link to={"/signup"}>signup</Link>
         </span>
       </form>
       <ToastContainer />

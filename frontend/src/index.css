@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -14,4 +17,58 @@ code {
 
 .nav-link {
   margin-left: 50px;
+}
+.hero-container{
+  height: 90vh;
+  width: 100vw;
+}
+.hero-container-left{
+  height: 90vh;
+  width: 50vw;
+  float: left;
+  background-color: coral;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+}
+.hero-right{
+  height: 90vh;
+  width: 50vw;
+  float: right;
+  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.img-container {
+  height: 50vh;
+  width: 30vw;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.hero-right-img {
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  border-radius: 10px;
+  animation: rotate 4s linear infinite;
+  transition: transform 0.4s ease, animation-duration 0.4s ease;
+  will-change: transform;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-right-img:hover {
+  animation: rotate 2s linear infinite;
+  transform: scale(1.1) rotate(0deg);
 }

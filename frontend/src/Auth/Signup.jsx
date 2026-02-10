@@ -31,7 +31,7 @@ function Signup() {
         e.preventDefault()
         try {
             const { data } = await axios.post(
-                "http://localhost:3002/signup",
+                "https://zerodha-3-rhrz.onrender.com/signup",
                 {
                     ...inputValue,
                 },
@@ -41,7 +41,7 @@ function Signup() {
             if (success) {
                 handleSuccess(message)
                 setTimeout(() => {
-                    navigate("/");
+                    navigate("/login");
                 }, 1000);
             } else {
                 handleError(message)
