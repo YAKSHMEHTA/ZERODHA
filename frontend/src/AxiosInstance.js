@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3002',
+  baseURL: 'https://zerodha-7.onrender.com',
   withCredentials: true,
 });
 

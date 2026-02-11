@@ -26,37 +26,33 @@ const Login = () => {
     toast.success(msg, {
       position: "bottom-left",
     });
-
+   
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        "https://zerodha-3-rhrz.onrender.com/login",
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      console.log(data);
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        setTimeout(() => {
-          navigate("http://localhost:3001/");
-        }, 1000);
-      } else {
-        console.log("failed")
-        handleError(message);
-      }
-    } catch (error) {
-      console.log(error);
+  e.preventDefault();
+
+  try {
+    const { data } = await axios.post(
+      "https://zerodha-7.onrender.com/auth/login",
+      { ...inputValue },
+      { withCredentials: true }
+    );
+
+    const { success, message } = data;
+
+    if (success) {
+      handleSuccess(message);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } else {
+      handleError(message);
     }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
-  };
+  } catch (error) {
+    console.log(error);
+    handleError("Login failed");
+  }
+};
+
 
   return (
     <div className="form_container">

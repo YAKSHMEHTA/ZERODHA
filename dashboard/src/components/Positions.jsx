@@ -8,7 +8,7 @@ const Positions = () => {
     axios.get("https://zerodha-6-j4fb.onrender.com/allPositions").then((res)=>{
       setAllPositions(res.data)
     })
-  })
+  },[])
 
   return (
     <>

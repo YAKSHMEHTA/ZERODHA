@@ -4,6 +4,9 @@ import { Vgraph } from "./Vgraph";
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
+
+  let changed = 1
+
   console.log("app");
   useEffect(() => {
     console.log("req se");
@@ -11,7 +14,7 @@ const Holdings = () => {
       console.log("data coming");
       setAllHoldings(res.data);
     });
-  }, []);
+  });
 
   const labels = allHoldings.map((subArray) => ( subArray["name"] ))
 
