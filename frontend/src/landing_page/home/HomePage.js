@@ -8,24 +8,17 @@ import Openacc from "../Openacc";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 function HomePage() {
   const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
 
   useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
-        navigate("/login");
-        return;
-      }
-
+    const verifyUser = async () => {
       try {
         const { data } = await axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/`,
+          "https://zerodha-7.onrender.com",
           {},
           { withCredentials: true }
         );
@@ -37,17 +30,15 @@ function HomePage() {
             position: "top-right",
           });
         } else {
-          removeCookie("token");
           navigate("/login");
         }
       } catch (error) {
-        removeCookie("token");
         navigate("/login");
       }
     };
 
-    verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+    verifyUser();
+  }, [navigate]);
 
   return (
     <div>
