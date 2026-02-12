@@ -17,11 +17,19 @@ if (process.env.NODE_ENV !== "production") {
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000","http://localhost:3001","https://zerodha-zkum.vercel.app/","https://zerodha-b9kl-172038azf-yakshvardhansinghmehta-2728s-projects.vercel.app","zerodha-b9kl.vercel.app"],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-}));
+app.set("trust proxy", 1);
+
+app.use(
+  cors({
+    origin: ["https://zerodha-b9kl.vercel.app"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+// Preflight fix
+app.options("*", cors());
 
 
 
