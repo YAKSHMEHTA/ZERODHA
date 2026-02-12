@@ -55,7 +55,7 @@ const Login = () => {
 
 
   return (
-    <div className="form_container">
+    <div className="form_container bg-black">
       <h2>Login Account</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -78,7 +78,7 @@ const Login = () => {
             onChange={handleOnChange}
           />
         </div>
-        <button className="bg-red-700"  type="submit">Submit</button>
+        <button className="bg-blue-700"  type="submit">Submit</button>
         <span>
           Dont have have an account? <Link to={"/signup"}>signup</Link>
         </span>

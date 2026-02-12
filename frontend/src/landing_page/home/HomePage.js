@@ -18,7 +18,7 @@ function HomePage() {
     const verifyUser = async () => {
       try {
         const { data } = await axios.post(
-          "https://zerodha-7.onrender.com",
+          "https://zerodha-7.onrender.com/auth",
           {},
           { withCredentials: true }
         );
@@ -30,10 +30,10 @@ function HomePage() {
             position: "top-right",
           });
         } else {
-          navigate("/login");
+          //navigate("/login");
         }
       } catch (error) {
-        navigate("/login");
+        //navigate("/login");
       }
     };
 
