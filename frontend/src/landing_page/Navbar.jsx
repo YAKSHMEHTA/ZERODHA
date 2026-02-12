@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom'
-import { useCookies } from "react-cookie";
+import { Link } from 'react-router-dom'
+
 
 function Navbar() {
    
@@ -9,7 +9,7 @@ function Navbar() {
       <nav className="navbar  navbar-expand-lg border-bottom" style={{backgroundColor:"#fff"}}>
         <div className="container p-2">
           <Link className="navbar-brand" href="#">
-            <img src="/media/logo.svg" style={{width:"25%"}} alt="image" />
+            <img src="/media/logo.svg" style={{width:"25%"}} alt="yaksh" />
           </Link>
           <button
             className="navbar-toggler"

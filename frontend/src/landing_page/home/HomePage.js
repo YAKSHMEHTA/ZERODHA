@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -41,6 +41,15 @@ function HomePage() {
     removeCookie("token");
     navigate("/signup");
   };
+  function ok(val){
+    if(val) {
+      username = "none"
+      Logout();
+    }
+  }
+  let no = false
+  ok(no)
+  
   return (
     <div>
       

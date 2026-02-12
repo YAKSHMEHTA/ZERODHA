@@ -37,13 +37,13 @@ function Stats() {
             src="/media/ecosystem.png"
             className="mt-5"
             style={{ height: "75%", width: "100%" }}
-            alt="image"
+            alt="yaksh"
           />
           <div className="col  p-5">
-            <a style={{textDecoration: "none"}} className="p-5" href="">
+            <a style={{textDecoration: "none"}} className="p-5" href="/">
               Explore our products <i class="fa-solid fa-arrow-right"></i>
             </a>
-            <a href="#" style={{textDecoration: "none"}}>
+            <a href="/" style={{textDecoration: "none"}}>
               Try Kite demo <i class="fa-solid fa-arrow-right"></i>
             </a>
             
@@ -53,7 +53,7 @@ function Stats() {
       <div style={{height:"10px"}}></div>
       <div className="row mt-0">
         <div className="col-2"></div>
-        <div className="col-8"><img src="/media/pressLogos.png"  style={{width:"90%"}} alt="image" /></div>
+        <div className="col-8"><img src="/media/pressLogos.png"  style={{width:"90%"}} alt="yaksh" /></div>
         <div className="col-2"></div>
       </div>
     </div>

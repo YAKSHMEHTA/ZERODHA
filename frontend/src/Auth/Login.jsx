@@ -32,7 +32,7 @@ const Login = () => {
 
   try {
     const { data } = await axios.post(
-      "https://zerodha-7.onrender.com/auth/login",
+      "http://localhost:3002/auth/login",
       { ...inputValue },
       { withCredentials: true }
     );
