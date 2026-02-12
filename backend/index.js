@@ -13,12 +13,12 @@ const authRoute = require("./Routes/AuthRoute");
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+app.set("trust proxy", 1);
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-app.set("trust proxy", 1);
+
 
 const corsOptions = {
   origin: [
