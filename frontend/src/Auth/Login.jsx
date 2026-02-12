@@ -78,7 +78,7 @@ const Login = () => {
             onChange={handleOnChange}
           />
         </div>
-        <button className="bg-green-500" onClick={handleSubmit} type="submit">Submit</button>
+        <button className="bg-blue-500" onClick={handleSubmit} type="submit">Submit</button>
         <span>
           Dont have have an account? <Link to={"/signup"}>signup</Link>
         </span>
