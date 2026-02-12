@@ -32,7 +32,7 @@ const Login = () => {
 
   try {
     const { data } = await axios.post(
-      "https://zerodha-7.onrender.com//auth/login",
+      "https://zerodha-7.onrender.com/auth/login",
       { ...inputValue },
       { withCredentials: true }
     );
@@ -78,7 +78,7 @@ const Login = () => {
             onChange={handleOnChange}
           />
         </div>
-        <button className="bg-blue-500" onClick={handleSubmit} type="submit">Submit</button>
+        <button className="bg-green-700" onClick={handleSubmit} type="submit">Submit</button>
         <span>
           Dont have have an account? <Link to={"/signup"}>signup</Link>
         </span>
