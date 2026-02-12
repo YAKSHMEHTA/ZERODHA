@@ -21,7 +21,13 @@ app.set("trust proxy", 1);
 
 app.use(
   cors({
-    origin: ["https://zerodha-b9kl.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://zerodha-zkum.vercel.app",
+      "https://zerodha-b9kl.vercel.app",
+      "https://zerodha-b9kl-172038azf-yakshvardhansinghmehta-2728s-projects.vercel.app",
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -29,7 +35,8 @@ app.use(
 );
 
 // Preflight fix
-app.options("*", cors());
+app.options("/*", cors());
+
 
 
 
