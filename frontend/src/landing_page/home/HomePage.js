@@ -30,10 +30,10 @@ function HomePage() {
             position: "top-right",
           });
         } else {
-          //navigate("/login");
+          navigate("/login");
         }
       } catch (error) {
-        //navigate("/login");
+        navigate("/login");
       }
     };
 
