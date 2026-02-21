@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import './index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import About from './landing_page/about/AboutPage'
 import { CookiesProvider } from 'react-cookie';
 import Product from './landing_page/products/Universe'
@@ -11,7 +13,6 @@ import Notfound from './landing_page/Notfound';
 import HomePage from './landing_page/home/HomePage';
 import Login from './Auth/Login';
 import Signup from './Auth/Signup';
-
 import PricingPage from './landing_page/products/ProductPage';
 
 
