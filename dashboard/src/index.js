@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
+import Holddings from "./components/Holddings";
 import Home from "./components/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -10,6 +11,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Home />} />
+        <Route path="/holddings" element={<Holddings />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
