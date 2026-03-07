@@ -72,3 +72,16 @@ code {
   animation: rotate 2s linear infinite;
   transform: scale(1.1) rotate(0deg);
 }
+
+.nav-parent{
+  display: flex;
+  background-color: blue;
+  justify-content: space-around;
+}
+
+.navright{
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+

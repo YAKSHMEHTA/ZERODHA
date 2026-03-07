@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "./Hero";
 import Awards from "./Awards";
 import Stats from "./Stats";
@@ -13,34 +13,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function HomePage() {
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const verifyUser = async () => {
-      try {
-        const { data } = await axios.post(
-          "https://zerodha-7.onrender.com/auth",
-          {},
-          { withCredentials: true }
-        );
 
-        const { status, user } = data;
-
-        if (status) {
-          toast(`Hello ${user}`, {
-            position: "top-right",
-          });
-        } else {
-          navigate("/login");
-        }
-      } catch (error) {
-        navigate("/login");
-      }
-    };
-
-    verifyUser();
-  }, [navigate]);
-
+  
   return (
     <div>
       <Navbar />
