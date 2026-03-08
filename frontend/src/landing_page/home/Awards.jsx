@@ -4,7 +4,7 @@ function Awards() {
   return (
     <div className="container mt-5">
       <div className="row align-items-center">
-        <div className="col-md-6 p-5">
+        <div className="col-md-6 ">
           <img
             src="/media/largestBroker.svg"
             alt="Largest broker illustration"
@@ -37,7 +37,7 @@ function Awards() {
             </div>
             
           </div>
-          <img src="/media/pressLogos.png" alt="" style={{width:"90%"}} />
+          <img src="/media/pressLogos.png" alt="" className="max-sm:w-full mt-10" />
         </div>
       </div>
     </div>

@@ -25,13 +25,12 @@ const WatchList = () => {
     { name: "M&M", qty: 2, avg: 809.9 },
     { name: "RELIANCE", qty: 1, avg: 2193.7 },
     { name: "SBIN", qty: 4, avg: 324.35 },
-    { name: "SGBMAY29", qty: 2, avg: 4727.0 },
     { name: "TATAPOWER", qty: 5, avg: 104.2 },
     { name: "TCS", qty: 1, avg: 3041.7 },
     { name: "WIPRO", qty: 4, avg: 489.3 },
   ];
 
-     useEffect(() => {
+    useEffect(() => {
     fetchLivePrices();
     
     // Auto-refresh every 30 seconds
@@ -103,15 +102,15 @@ const WatchListItem = ({ stock, index }) => {
           <span className="price">{stock.currentValue}</span>
         </div>
       </div>
-      {show&&<WatchListAction uid={stock.name} />}
+      {show&&<WatchListAction uid={stock.name} price={stock.currentValue} />}
     </li>
   );
 };
 
-const WatchListAction = ({uid}) =>{
+const WatchListAction = ({uid,price}) =>{
   const generalContext = useContext(GeneralContext);
   const handelClick = ()=>{
-    generalContext.openBuyWindow(uid)
+    generalContext.openBuyWindow({uid,price})
   }
 
   return (

@@ -6,7 +6,7 @@ import "./BuyActionWindow.css";
 
 
 
-const BuyActionWindow = ({ uid }) => {
+const BuyActionWindow = ({ uid,price }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
   
@@ -17,7 +17,7 @@ const BuyActionWindow = ({ uid }) => {
     await axios.post("https://zerodha-6-j4fb.onrender.com/newOrder", {
       name: uid,
       qty: stockQuantity,
-      price: stockPrice,
+      price: price,
       mode: "BUY",
     });
     closeBuyWindow();
@@ -27,7 +27,7 @@ const BuyActionWindow = ({ uid }) => {
     await axios.post("https://zerodha-6-j4fb.onrender.com/sellOrder", {
       name: uid,
       qty: stockQuantity,
-      price: stockPrice,
+      price: price,
       mode: "SELL",
     })
     closeBuyWindow();
@@ -57,9 +57,8 @@ const BuyActionWindow = ({ uid }) => {
               type="number"
               name="price"
               id="price"
-              step="0.05"
               onChange={(e) => setStockPrice(Number(e.target.value))}
-              value={stockPrice}
+              value={price}
             />
           </fieldset>
         </div>

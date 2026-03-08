@@ -55,29 +55,26 @@ app.use((req, res, next) => {
   next();
 });
 
-// =============================================
-// LIVE STOCK PRICES API
-// =============================================
 
 let priceCache = {};
 let lastPriceUpdate = 0;
-const CACHE_DURATION = 30000; // 30 seconds
+const CACHE_DURATION = 30000; 
 
-// Function to fetch live prices for given symbols
+
 async function fetchLivePrices(symbols) {
   try {
     if (!symbols || symbols.length === 0) {
       return {};
     }
 
-    // Convert to Yahoo Finance symbols (.NS for NSE, .BO for BSE)
+    console.log(symbols);
     const yahooSymbols = symbols.map(symbol => {
       const upperSymbol = symbol.toUpperCase();
       if (upperSymbol === 'SGBMAY29') return 'SGBMAY29.BO';
       return `${upperSymbol}.NS`;
     });
 
-    console.log(`📊 Fetching live prices for: ${symbols.join(', ')}`);
+    console.log(`Fetching live prices for: ${symbols.join(', ')}`);
     const quotes = await yahooFinance.quote(yahooSymbols);
 
     const priceMap = {};
@@ -95,16 +92,16 @@ async function fetchLivePrices(symbols) {
       };
     });
 
-    console.log(`✅ Successfully fetched ${Object.keys(priceMap).length} stock prices`);
+    console.log(`Successfully fetched ${Object.keys(priceMap).length} stock prices`);
     return priceMap;
 
   } catch (error) {
-    console.error('❌ Yahoo Finance error:', error.message);
+    console.error('Yahoo Finance error:', error.message);
     return {};
   }
 }
 
-// POST endpoint - Send array of symbols and holdings data
+
 app.post("/getLivePrices", async (req, res) => {
   try {
     const { symbols, holdings } = req.body;
@@ -118,7 +115,6 @@ app.post("/getLivePrices", async (req, res) => {
 
     const now = Date.now();
 
-    // Fetch fresh prices
     const livePrices = await fetchLivePrices(symbols);
     
     if (Object.keys(livePrices).length === 0) {
@@ -128,7 +124,6 @@ app.post("/getLivePrices", async (req, res) => {
       });
     }
 
-    // If holdings data provided, calculate P&L
     let enrichedHoldings = null;
     let summary = null;
 
@@ -162,7 +157,7 @@ app.post("/getLivePrices", async (req, res) => {
         };
       });
 
-      // Calculate totals
+
       const totalInvested = enrichedHoldings.reduce((sum, h) => sum + parseFloat(h.invested), 0);
       const totalCurrent = enrichedHoldings.reduce((sum, h) => sum + parseFloat(h.currentValue), 0);
       const totalPnL = totalCurrent - totalInvested;
@@ -193,7 +188,7 @@ app.post("/getLivePrices", async (req, res) => {
   }
 });
 
-// GET endpoint - Query params for symbols (comma-separated)
+
 app.get("/getLivePrices", async (req, res) => {
   try {
     const symbolsParam = req.query.symbols;
@@ -205,7 +200,7 @@ app.get("/getLivePrices", async (req, res) => {
       });
     }
 
-    // Split comma-separated symbols
+
     const symbols = symbolsParam.split(',').map(s => s.trim()).filter(Boolean);
 
     if (symbols.length === 0) {
@@ -229,7 +224,7 @@ app.get("/getLivePrices", async (req, res) => {
       });
     }
 
-    // Fetch fresh prices
+
     const livePrices = await fetchLivePrices(symbols);
     
     if (Object.keys(livePrices).length === 0) {
@@ -239,7 +234,7 @@ app.get("/getLivePrices", async (req, res) => {
       });
     }
 
-    // Update cache
+
     priceCache[cacheKey] = livePrices;
     lastPriceUpdate = now;
 
@@ -259,7 +254,7 @@ app.get("/getLivePrices", async (req, res) => {
   }
 });
 
-// Single stock price
+
 app.get("/stockPrice/:symbol", async (req, res) => {
   try {
     const symbol = req.params.symbol.toUpperCase();
@@ -287,18 +282,14 @@ app.get("/stockPrice/:symbol", async (req, res) => {
   }
 });
 
-// =============================================
-// EXISTING ENDPOINTS (keep as is)
-// =============================================
-
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("DB connected");
     app.listen(PORT, () => {
-      console.log(`\n🚀 Server running on port ${PORT}`);
-      console.log(`📊 Live Stock Price API ready`);
-      console.log(`🔗 POST http://localhost:${PORT}/getLivePrices`);
-      console.log(`🔗 GET  http://localhost:${PORT}/getLivePrices?symbols=INFY,TCS,RELIANCE\n`);
+      console.log(`\n Server running on port ${PORT}`);
+      console.log(`Live Stock Price API ready`);
+      console.log(`POST http://localhost:${PORT}/getLivePrices`);
+      console.log(`GET  http://localhost:${PORT}/getLivePrices?symbols=INFY,TCS,RELIANCE\n`);
     });
   })
   .catch((err) => console.error(err));

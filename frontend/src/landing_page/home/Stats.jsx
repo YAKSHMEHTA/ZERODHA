@@ -2,9 +2,9 @@ import React from "react";
 
 function Stats() {
   return (
-    <div className="container mb-5">
-      <div className="row p-5 pb-0">
-        <div className="col-6 p-5 ">
+    <div className="container mb-5 max-sm:hidden">
+      <div className="row p-1 pb-0 max-sm:bg-red-800">
+        <div className="col-6 p-5 max-sm:w-full max-sm:col-0  max-sm:flex-column">
           <h3 className="mb-5">Trust with confidence</h3>
           <h4>Customer-first always</h4>
           <p>
@@ -35,7 +35,7 @@ function Stats() {
         <div className="col-6">
           <img
             src="/media/ecosystem.png"
-            className="mt-5"
+            className="mt-5 max-sm:hidden"
             style={{ height: "75%", width: "100%" }}
             alt="yaksh"
           />

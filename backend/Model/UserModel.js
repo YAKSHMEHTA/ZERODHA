@@ -2,23 +2,65 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    required: [true, "Your email address is required"],
-    unique: true,
-  },
+
   username: {
     type: String,
-    required: [true, "Your username is required"],
+    required: [true, "Username is required"],
+    trim: true
   },
+
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+    lowercase: true
+  },
+
   password: {
     type: String,
-    required: [true, "Your password is required"],
+    required: [true, "Password is required"],
   },
+
+  balance: {
+    type: Number,
+    default: 100000, 
+  },
+
+  portfolio: [
+    {
+      stockSymbol: String,
+      quantity: Number,
+      avgPrice: Number
+    }
+  ],
+
+  watchlist: [
+    {
+      stockSymbol: String
+    }
+  ],
+
+  transactions: [
+    {
+      stockSymbol: String,
+      type: {
+        type: String,
+        enum: ["BUY", "SELL"]
+      },
+      quantity: Number,
+      price: Number,
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
+
   createdAt: {
     type: Date,
-    default: new Date(),
-  },
+    default: Date.now
+  }
+
 });
 
 userSchema.pre("save", async function () {
