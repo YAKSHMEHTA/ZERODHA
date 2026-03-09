@@ -7,10 +7,8 @@ const Holdings = () => {
 
   let changed = 1
 
-  console.log("app");
   useEffect(() => {
-    console.log("req se");
-    axios.get("https://zerodha-6-j4fb.onrender.com/allHoldings",{ withCredentials: true}).then((res) => {
+    axios.get("http://localhost:3002/holdings",{ withCredentials: true}).then((res) => {
       console.log("data coming");
       setAllHoldings(res.data);
     });

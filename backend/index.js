@@ -7,12 +7,13 @@ const { PositionsModel } = require("./Model/PositionsModel");
 const { HoldingModel } = require("./Model/HoldingModel");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const holdingRoutes = require("./Routes/holdingRoutes")
 const authRoute = require("./Routes/AuthRoute");
 const orderRoutes = require("./Routes/orderRoutes")
 const stockRoutes = require("./Routes/stockRoutes")
-
+const User = require("./Model/UserModel")
 
 
 if (process.env.NODE_ENV !== "production") {
@@ -66,6 +67,38 @@ app.use("/auth", authRoute);
 app.use("/holdings", holdingRoutes);
 app.use("/orders", orderRoutes);
 app.use("/stocks", stockRoutes);
+
+
+app.post('/add',async(req,res)=>{
+  const {name,qty,price} = req.body
+  console.log('req');
+  console.log(req.body)
+  console.log(qty);
+  console.log(price);
+  
+  const token = req.cookies.token
+  if(!token){
+    console.log('notoken');
+    return;
+  }
+
+  try{
+    const decoded = jwt.verify(token,process.env.TOKEN_KEY)
+    req.user = decoded
+    const id = req.user.id
+    let user = await User.findOne({_id:id})
+    user.portfolio.push({
+      stockSymbol: name,
+      quantity: qty,
+      avgPrice: price
+    })
+    user.save();
+  }catch(e){
+    console.log(e);
+  }
+
+
+})
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
