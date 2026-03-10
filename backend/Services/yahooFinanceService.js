@@ -6,7 +6,7 @@ const yahooFinance = new YahooFinance({
 
 let priceCache = {};
 let lastPriceUpdate = 0;
-const CACHE_DURATION = 30000; 
+const CACHE_DURATION = 3000; 
 
 async function fetchLivePrices  (symbols) {
   try {

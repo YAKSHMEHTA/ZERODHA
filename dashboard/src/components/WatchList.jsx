@@ -34,7 +34,7 @@ const WatchList = () => {
     fetchLivePrices();
     
     // Auto-refresh every 30 seconds
-    const interval = setInterval(fetchLivePrices, 30000);
+    const interval = setInterval(fetchLivePrices, 300);
     return () => clearInterval(interval);
   }, []);
 
