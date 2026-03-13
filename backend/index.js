@@ -69,6 +69,8 @@ app.use("/orders", orderRoutes);
 app.use("/stocks", stockRoutes);
 
 
+
+
 app.post('/add',async(req,res)=>{
   const {name,qty,price} = req.body
   console.log('req');
@@ -96,7 +98,6 @@ app.post('/add',async(req,res)=>{
   }catch(e){
     console.log(e);
   }
-
 
 })
 

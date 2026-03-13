@@ -14,14 +14,14 @@ async function fetchLivePrices  (symbols) {
       return {};
     }
 
-    console.log(symbols);
+
     const yahooSymbols = symbols.map(symbol => {
       const upperSymbol = symbol.toUpperCase();
       if (upperSymbol === 'SGBMAY29') return 'SGBMAY29.BO';
       return `${upperSymbol}.NS`;
     });
 
-    console.log(`Fetching live prices for: ${symbols.join(', ')}`);
+
     const quotes = await yahooFinance.quote(yahooSymbols);
 
     const priceMap = {};
@@ -39,11 +39,11 @@ async function fetchLivePrices  (symbols) {
       };
     });
 
-    console.log(`Successfully fetched ${Object.keys(priceMap).length} stock prices`);
+
     return priceMap;
 
   } catch (error) {
-    console.error('Yahoo Finance error:', error.message);
+   
     return {};
   }
 }
@@ -128,7 +128,7 @@ async function getLivePricesPost (req, res)  {
     });
 
   } catch (error) {
-    console.error('Error in /getLivePrices:', error);
+    
     res.status(500).json({ 
       success: false, 
       error: 'Failed to fetch live prices' 
@@ -194,7 +194,7 @@ async  function getLivePricesGet (req, res)  {
     });
 
   } catch (error) {
-    console.error('Error in /getLivePrices:', error);
+    
     res.status(500).json({ 
       success: false, 
       error: 'Failed to fetch live prices' 
