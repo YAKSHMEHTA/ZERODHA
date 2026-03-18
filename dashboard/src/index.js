@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
+import Signup from "./authPath/Signup";
 import Holddings from "./components/Holddings";
 import Home from "./components/Home";
 import Login from "./authPath/Login";
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path="/*" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/holddings" element={<Holddings />} />
       </Routes>
     </BrowserRouter>

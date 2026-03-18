@@ -31,8 +31,6 @@ export const options = {
   },
 };
 
-
-
 export function Vgraph({data}) {
   return <Bar options={options} data={data} />;
 }

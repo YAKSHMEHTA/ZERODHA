@@ -9,13 +9,10 @@ const Holdings = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3002/holdings",{ withCredentials: true}).then((res) => {
-      console.log("data coming");
       setAllHoldings(res.data);
     });
   });
-
-  
-
+  console.log(allHoldings)
   const labels = allHoldings.map((subArray) => ( subArray["name"] ))
 
   const data = {
@@ -23,7 +20,7 @@ const Holdings = () => {
     datasets: [
       {
         label: "Stock Nmae",
-        data: allHoldings.map((stock) =>stock.price),
+        data: allHoldings.map((stock) =>stock.avgPrice),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ]
@@ -65,17 +62,17 @@ const Holdings = () => {
             </tr>
           </tbody>
           {allHoldings.map((stock, index) => {
-            const currValue = stock.price * stock.qty;
-            const isProfit = currValue - stock.avg * stock.qty >= 0;
+            const currValue = stock.avgPrice * stock.quantity;
+            const isProfit = currValue - stock.avgPrice * stock.quantity >= 0;
             const profClass = isProfit ? "profit" : "loss";
             const dayClass = stock.isLoss ? "loss" : "profit";
 
             return (
               <tr key={index} className="">
-                <td>{stock.name}</td>
-                <td>{stock.qty}</td>
-                <td>{stock.avg.toFixed(2)}</td>
-                <td>{stock.price.toFixed(2)}</td>
+                <td>{stock.stockSymbol}</td>
+                <td>{stock.quantity}</td>
+                <td>{stock.avgPrice.toFixed(2)}</td>
+                <td>{stock.avgPrice.toFixed(2)}</td>
                 <td>{currValue.toFixed(2)}</td>
                 <td className={profClass}>
                   {(currValue - stock.avg * stock.qty).toFixed(2)}
