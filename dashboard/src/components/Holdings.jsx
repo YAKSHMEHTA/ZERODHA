@@ -21,7 +21,7 @@ const Holdings = () => {
       {
         label: "Stock Nmae",
         data: allHoldings.map((stock) =>stock.avgPrice),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(229, 255, 99, 0.5)",
       },
     ]
   }
@@ -75,7 +75,7 @@ const Holdings = () => {
                 <td>{stock.avgPrice.toFixed(2)}</td>
                 <td>{currValue.toFixed(2)}</td>
                 <td className={profClass}>
-                  {(currValue - stock.avg * stock.qty).toFixed(2)}
+                  {(currValue - stock.avgPrice * stock.quantity).toFixed(2)}
                 </td>
                 <td className={profClass}>{stock.net}</td>
                 <td className={dayClass}>{stock.day}</td>
